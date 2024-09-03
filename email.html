@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="has-background-grey-lighter">
+<head>
+  <title>Contact Form</title>
+  <link rel='stylesheet' href="css/app.css">
+  <link rel="icon" href="icon.png">
+</head>
+<body class="container is-max-desktop has-background-grey-lighter is-mobile has-text-black-bis">
+  <section class="container has-background-dark is-mobile">
+  <br>
+</section>
+<div class="container is-centered mt-40">
+        <div class="buttons has-addons is-centered ">
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('https://rigger-speed.github.io/face/')"><strong>Home</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('FacialAutoRig-1.html')"><strong>Documentation</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('tutorial.html')"><strong>Tutorial</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('download.html')"><strong>Download</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('About.html')"><strong>About</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('email.html')"><strong>Connect</strong></button>
+      </div>
+   </div>
+ <!--=============== -->
+
+<form name="myForm" class="box has-background-white-ter is-vcentered is-mobile"
+    onsubmit="return validateForm()"
+    action="https://formspree.io/f/xvoeyvjv"
+    method="POST"
+    >
+    <label class="label has-text-danger" name="errorL" id="errorL"></label>
+    <label class="label has-text-success" name="successful" id="successful"></label>
+    <label class="label has-text-black-bis" name="message">Contact Form</label>
+      <div class="field">
+        <label class="label has-text-black-bis">Name:</label>
+        <div class="control">
+            <input class="input is-mobile has-background-light has-text-black-bis" type="text" name="name" id="name" placeholder="Name" >
+        </div>
+    </div>
+    <div class="field">
+      <label class="label has-text-black-bis">Email*:</label>
+        <div class="control">
+            <input class="input is-mobile has-background-light has-text-black-bis" type="email" name="email" id="email" placeholder="Email*" >
+        </div>
+    </div>
+    <div class="field">
+        <div class="select is-fullwidth has-background-ligh" >
+            <select name="department" class="has-text-black-bist " >
+            <option disabled selected>Select product</option>
+            <option>arh_FacialAutoRig</option>
+            <option>arh_EyeAutoRig</option>
+            <option>arh_LipRigEasy</option>
+            <option>arh_EyeBrowRigEasy</option>
+            <option>arh_Ribboner</option>
+             <option>arh_stickyBrowsWireRig</option>
+             <option>arh_ClusterControlle</option>
+            </select>
+        </div>
+    </div>
+    <div class="field">
+      <label class="label has-text-black-bis">Message*:</label>
+        <div class="control">
+            <textarea class="textarea is-mobile has-background-light has-text-black-bis" name="message" rows="5" placeholder="Message*" ></textarea>
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary is-fullwidth " type="submit" >Submit</button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+function validateForm() {
+  var x = document.forms["myForm"]["email"].value;
+  if (x == "") {
+    // alert("Email must be filled out");
+    document.getElementById('errorL').innerHTML = 'Error : Email must be filled out! <br> Please fill in the fields marked with an asterisk';
+    document.getElementById('successful').innerHTML = '';
+    return false;
+  }
+  else {document.getElementById('errorL').innerHTML = '';
+         document.getElementById('successful').innerHTML = 'It was successful';
+  }
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (reg.test(x) == false)
+        {
+            // alert('Invalid Email Address');
+            document.getElementById('errorL').innerHTML = 'Error : Invalid Email Address! <br> Please enter the correct email address';
+            document.getElementById('successful').innerHTML = '';
+            return false;
+        }else {document.getElementById('errorL').innerHTML = '';
+         document.getElementById('successful').innerHTML = 'It was successful';
+  }
+
+}
+</script>
+  
+</body>
+</html>

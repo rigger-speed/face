@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="has-background-grey-lighter">
+<head>
+  <title>Contact Form</title>
+  <link rel='stylesheet' href="css/app.css">
+  <link rel="icon" href="icon.png">
+</head>
+<body class="container is-max-desktop has-background-grey-lighter is-mobile has-text-black-bis">
+  <section class="container has-background-dark is-mobile">
+  <br>
+</section>
+<div class="container is-centered mt-40">
+        <div class="buttons has-addons is-centered ">
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('https://rigger-speed.github.io/face/')"><strong>Home</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('FacialAutoRig-1.html')"><strong>Documentation</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('tutorial.html')"><strong>Tutorial</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('download.html')"><strong>Download</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('About.html')"><strong>About</strong></button>
+         <button class="button has-background-dark has-text-white-bis" onclick= "window.open('email.html')"><strong>Connect</strong></button>
+      </div>
+   </div>
+ <!--=============== -->
+<hr>
+  <form name="myForm" class="box has-background-white-ter is-vcentered is-mobile"
+        onsubmit="return validateForm()"
+        action="https://formspree.io/f/xvoeyvjv"  method="POST"
+    <hr>
+    
+    <p>
+       <label>
+           Please select the obtained file format and submit it so that the registry script file will be sent to your email.
+       </label>
+    </p>
+     <hr>
+      <label>
+      Your email:
+      <input type="email" name="email" required>  </label>
+    <textarea style="display: none;" id="fileContent" name="message"></textarea>
+    <label>
+      Your file:
+      <input type="file" id="fileInput" accept=".txt,.pya" onchange="loadFile()">
+    </label>
+
+    <hr>
+    <p class="control">
+      <button class="button is-primary" type="submit">Submit</button>
+    </p>
+    <hr>
+     <p>
+       <label>
+           If you have a problem with sending, notify via message or send the relevant file to email.
+       </label>
+    </p>
+    <hr>
+  </form>
+
+  <script>
+function loadFile() {
+  const input = document.getElementById('fileInput');
+  const file = input.files[0];
+
+  if (!file) {
+    return; // Handle empty file selection gracefully
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const text = reader.result;
+    const lines = text.split('\n');
+
+    if (lines.length === 2) {
+      document.getElementById('fileContent').textContent = text;
+    } else {
+      input.value = '';
+      alert('There is a problem with the file \nPlease enter the correct file');
+    }
+  };
+  reader.readAsText(file);
+}
+
+
+    
+    function validateForm() {
+      var x = document.forms["myForm"]["email"].value;
+      var file = document.forms["myForm"]["fileContent"].value;
+      //alert(file);
+      if (file== "") {
+        alert("Select your file and then click");
+        return false;
+      }
+
+      
+  if (x == "") {
+    // alert("Email must be filled out");
+    document.getElementById('errorL').innerHTML = 'Error : Email must be filled out! <br> Please fill in the fields marked with an asterisk';
+    document.getElementById('successful').innerHTML = '';
+    return false;
+  }
+  else {document.getElementById('errorL').innerHTML = '';
+         document.getElementById('successful').innerHTML = 'It was successful';
+  }
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (reg.test(x) == false)
+        {
+            // alert('Invalid Email Address');
+            document.getElementById('errorL').innerHTML = 'Error : Invalid Email Address! <br> Please enter the correct email address';
+            document.getElementById('successful').innerHTML = '';
+            return false;
+        }else {document.getElementById('errorL').innerHTML = '';
+         document.getElementById('successful').innerHTML = 'It was successful';
+  }
+
+
+      // Add redirection logic after successful form submission
+      const redirectURL = "https://rigger-speed.github.io/face/";  // Replace with your URL
+      document.forms["myForm"].action = redirectURL;
+      return true;
+    }
+  </script>
+</body>
+</html>
